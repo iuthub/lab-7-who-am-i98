@@ -1,6 +1,18 @@
 <?php  
 
 include('connection.php');
+if( isset($_POST['username']) && isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['pwd']) && isset($_POST['confirm_pwd'])){
+	$username = $_POST['username'];
+	$fullname = $_POST['fullname'];
+	$email = $_POST['email'];
+	$pwd = $_POST['pwd'];
+	$sql = "INSERT INTO `users`(`username`, `email`, `password`, `fullname`) VALUES ('$username','$email','$pwd','$fullname')";
+	if( $con->query($sql) ){
+		header('Location: index.php');
+	}else{
+		header("Location: ".$_SERVER["HTTP_REFERER"]."");
+	}
+}
 
 ?>
 
